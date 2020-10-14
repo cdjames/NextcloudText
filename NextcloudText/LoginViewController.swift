@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         userNameField.delegate = self
         passwordField.delegate = self
         // disable button until fields are populated
-        loginButton.isEnabled = false
+        activateButton(false) // try for rounded button: https://nshipster.com/ibinspectable-ibdesignable/
     }
     
     //MARK: Helpers
@@ -32,6 +32,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func activateButton(_ activate: Bool = true)
+    {
+        if activate {
+            loginButton.isEnabled = true
+            loginButton.backgroundColor = UIColor.systemBlue
+        } else {
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor.lightGray
+        }
     }
     
     //MARK: Actions
@@ -51,12 +62,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField)
     {
         // check the textfields
-        guard serverField.text!.validURL, userNameField.text!.isNotEmpty, passwordField.text!.isNotEmpty else {
-            loginButton.isEnabled = false
+        guard serverField.text!.isValidURL, userNameField.text!.isNotEmpty, passwordField.text!.isNotEmpty else {
+            activateButton(false)
             return
         }
         
         // all fields are valid; show "Login" button
-        loginButton.isEnabled = true
+        activateButton()
     }
 }

@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED625373ECC00BEA536 /* String+Extensions.swift */; };
+		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
+		F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F092536A124002EB664 /* SceneDelegate.swift */; };
+		F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F0B2536A124002EB664 /* LoginViewController.swift */; };
+		F0D11F0F2536A124002EB664 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D11F0D2536A124002EB664 /* Main.storyboard */; };
+		F0D11F112536A125002EB664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D11F102536A125002EB664 /* Assets.xcassets */; };
+		F0D11F142536A125002EB664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D11F122536A125002EB664 /* LaunchScreen.storyboard */; };
+		F0D11F1F2536A126002EB664 /* NextcloudTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F1E2536A126002EB664 /* NextcloudTextTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F0D11F1B2536A126002EB664 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0D11EFC2536A124002EB664 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0D11F032536A124002EB664;
+			remoteInfo = NextcloudText;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F01CAED625373ECC00BEA536 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D11F072536A124002EB664 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F0D11F092536A124002EB664 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F0D11F0B2536A124002EB664 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F0D11F0E2536A124002EB664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F0D11F102536A125002EB664 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0D11F132536A125002EB664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F0D11F152536A125002EB664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D11F1A2536A126002EB664 /* NextcloudTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NextcloudTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0D11F1E2536A126002EB664 /* NextcloudTextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextcloudTextTests.swift; sourceTree = "<group>"; };
+		F0D11F202536A126002EB664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F0D11F012536A124002EB664 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0D11F172536A126002EB664 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F01CAED525373E7F00BEA536 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAED625373ECC00BEA536 /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F0D11EFB2536A124002EB664 = {
+			isa = PBXGroup;
+			children = (
+				F0D11F062536A124002EB664 /* NextcloudText */,
+				F0D11F1D2536A126002EB664 /* NextcloudTextTests */,
+				F0D11F052536A124002EB664 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F0D11F052536A124002EB664 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0D11F042536A124002EB664 /* NextcloudText.app */,
+				F0D11F1A2536A126002EB664 /* NextcloudTextTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F0D11F062536A124002EB664 /* NextcloudText */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAED525373E7F00BEA536 /* Extensions */,
+				F0D11F072536A124002EB664 /* AppDelegate.swift */,
+				F0D11F092536A124002EB664 /* SceneDelegate.swift */,
+				F0D11F0B2536A124002EB664 /* LoginViewController.swift */,
+				F0D11F0D2536A124002EB664 /* Main.storyboard */,
+				F0D11F102536A125002EB664 /* Assets.xcassets */,
+				F0D11F122536A125002EB664 /* LaunchScreen.storyboard */,
+				F0D11F152536A125002EB664 /* Info.plist */,
+			);
+			path = NextcloudText;
+			sourceTree = "<group>";
+		};
+		F0D11F1D2536A126002EB664 /* NextcloudTextTests */ = {
+			isa = PBXGroup;
+			children = (
+				F0D11F1E2536A126002EB664 /* NextcloudTextTests.swift */,
+				F0D11F202536A126002EB664 /* Info.plist */,
+			);
+			path = NextcloudTextTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F0D11F032536A124002EB664 /* NextcloudText */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0D11F232536A126002EB664 /* Build configuration list for PBXNativeTarget "NextcloudText" */;
+			buildPhases = (
+				F0D11F002536A124002EB664 /* Sources */,
+				F0D11F012536A124002EB664 /* Frameworks */,
+				F0D11F022536A124002EB664 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NextcloudText;
+			productName = NextcloudText;
+			productReference = F0D11F042536A124002EB664 /* NextcloudText.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F0D11F192536A126002EB664 /* NextcloudTextTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0D11F262536A126002EB664 /* Build configuration list for PBXNativeTarget "NextcloudTextTests" */;
+			buildPhases = (
+				F0D11F162536A126002EB664 /* Sources */,
+				F0D11F172536A126002EB664 /* Frameworks */,
+				F0D11F182536A126002EB664 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0D11F1C2536A126002EB664 /* PBXTargetDependency */,
+			);
+			name = NextcloudTextTests;
+			productName = NextcloudTextTests;
+			productReference = F0D11F1A2536A126002EB664 /* NextcloudTextTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F0D11EFC2536A124002EB664 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Collin James";
+				TargetAttributes = {
+					F0D11F032536A124002EB664 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					F0D11F192536A126002EB664 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = F0D11F032536A124002EB664;
+					};
+				};
+			};
+			buildConfigurationList = F0D11EFF2536A124002EB664 /* Build configuration list for PBXProject "NextcloudText" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F0D11EFB2536A124002EB664;
+			productRefGroup = F0D11F052536A124002EB664 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F0D11F032536A124002EB664 /* NextcloudText */,
+				F0D11F192536A126002EB664 /* NextcloudTextTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F0D11F022536A124002EB664 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0D11F142536A125002EB664 /* LaunchScreen.storyboard in Resources */,
+				F0D11F112536A125002EB664 /* Assets.xcassets in Resources */,
+				F0D11F0F2536A124002EB664 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0D11F182536A126002EB664 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F0D11F002536A124002EB664 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */,
+				F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */,
+				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,
+				F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0D11F162536A126002EB664 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0D11F1F2536A126002EB664 /* NextcloudTextTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F0D11F1C2536A126002EB664 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0D11F032536A124002EB664 /* NextcloudText */;
+			targetProxy = F0D11F1B2536A126002EB664 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F0D11F0D2536A124002EB664 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0D11F0E2536A124002EB664 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F0D11F122536A125002EB664 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0D11F132536A125002EB664 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F0D11F212536A126002EB664 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F0D11F222536A126002EB664 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F0D11F242536A126002EB664 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68474QJ2AU;
+				INFOPLIST_FILE = NextcloudText/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.momotaro.NextcloudText;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0D11F252536A126002EB664 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68474QJ2AU;
+				INFOPLIST_FILE = NextcloudText/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.momotaro.NextcloudText;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F0D11F272536A126002EB664 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NextcloudTextTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.momotaro.NextcloudTextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NextcloudText.app/NextcloudText";
+			};
+			name = Debug;
+		};
+		F0D11F282536A126002EB664 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NextcloudTextTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.momotaro.NextcloudTextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NextcloudText.app/NextcloudText";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F0D11EFF2536A124002EB664 /* Build configuration list for PBXProject "NextcloudText" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0D11F212536A126002EB664 /* Debug */,
+				F0D11F222536A126002EB664 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0D11F232536A126002EB664 /* Build configuration list for PBXNativeTarget "NextcloudText" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0D11F242536A126002EB664 /* Debug */,
+				F0D11F252536A126002EB664 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0D11F262536A126002EB664 /* Build configuration list for PBXNativeTarget "NextcloudTextTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0D11F272536A126002EB664 /* Debug */,
+				F0D11F282536A126002EB664 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F0D11EFC2536A124002EB664 /* Project object */;
+}

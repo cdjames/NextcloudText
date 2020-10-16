@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED625373ECC00BEA536 /* String+Extensions.swift */; };
+		F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED92537B43800BEA536 /* UrlBuilder.swift */; };
 		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
 		F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F092536A124002EB664 /* SceneDelegate.swift */; };
 		F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F0B2536A124002EB664 /* LoginViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		F01CAED625373ECC00BEA536 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F01CAED92537B43800BEA536 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D11F072536A124002EB664 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D11F092536A124002EB664 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F01CAED82537B40300BEA536 /* SupportClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F01CAED92537B43800BEA536 /* UrlBuilder.swift */,
+			);
+			path = SupportClasses;
+			sourceTree = "<group>";
+		};
 		F0D11EFB2536A124002EB664 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +99,7 @@
 		F0D11F062536A124002EB664 /* NextcloudText */ = {
 			isa = PBXGroup;
 			children = (
+				F01CAED82537B40300BEA536 /* SupportClasses */,
 				F01CAED525373E7F00BEA536 /* Extensions */,
 				F0D11F072536A124002EB664 /* AppDelegate.swift */,
 				F0D11F092536A124002EB664 /* SceneDelegate.swift */,
@@ -211,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */,
 				F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */,
 				F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */,
 				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,

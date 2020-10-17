@@ -15,9 +15,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    
+    //MARK: Constants
     let HTTPS = "https"
     let LOGIN_PREDICATE = "/index.php/login/v2"
+    let FWD_SLASH = "/"
+    let EMPTY = ""
+    let ALRT_BTN_TXT = "OK"
     
+    //MARK: View Controller Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,13 +37,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Helpers
     // from https://github.com/Arrlindii/AAValidators/blob/master/Validators/Validators/ViewController.swift
+    /**
+     Raise an alert to the user
+     - Parameters:
+        - alert: a message to the user
+     */
     func showAlert(for alert: String) {
         let alertController = UIAlertController(title: nil, message: alert, preferredStyle: UIAlertController.Style.alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let alertAction = UIAlertAction(title: ALRT_BTN_TXT, style: .default, handler: nil)
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
     }
-    
+    /**
+     Activates the login button
+     - Parameters:
+        - activate: true to enable, false to disable. True by default
+     */
     func activateButton(_ activate: Bool = true)
     {
         if activate {
@@ -49,34 +64,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    /**
+    Checks all the text fields for appropriate values
+     - Returns:
+        - true or false
+     */
     func checkFields() -> Bool{
+        pathField.text!.trimRight(all: FWD_SLASH)
+        
         guard serverField.text!.isValidURL, userNameField.text!.isNotEmpty, passwordField.text!.isNotEmpty else {
             // problem with fields
             return false
         }
         
-        pathField.text!.trimRight(all: "/")
-//        let first = pathField.text!.first
-//        let second = pathField.text!.substring(to: <#T##String.Index#>)
-//        while pathField.text!.first == "/" && pathField.text![] {
-//            <#code#>
-//        }
         
         return true
     }
     
     //MARK: Actions
+    /**
+    Checks all the text fields for appropriate values
+     - Returns:
+        - true or false
+     */
     @IBAction func attemptLogin(_ sender: Any) { // loginButton action
         guard let server = serverField.text else { return }
         guard let usr = userNameField.text else { return }
         guard let psswd = passwordField.text else { return }
-//        path += LOGIN_PREDICATE
         
         var components = URLComponents()
         components.scheme = HTTPS
         components.host = server
-        components.path = "/" + (pathField.text ?? "") + LOGIN_PREDICATE
-//        components.path = (pathField.text ?? "") + LOGIN_PREDICATE
+        components.path = (pathField.text ?? EMPTY) + LOGIN_PREDICATE
+        components.path.prepend(one: FWD_SLASH)
 //        guard let url = UrlBuilder.create(withScheme: HTTPS, hostedBy: server, atPath: LOGIN_PREDICATE).url else { return }
         guard let url = components.url else { return }
 
@@ -89,7 +109,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     {
         // Hide the keyboard.
         textField.resignFirstResponder()
-        
+        // Move focus to next field
+        switch textField {
+        case serverField:
+            pathField.becomeFirstResponder()
+        case pathField:
+            userNameField.becomeFirstResponder()
+        case userNameField:
+            passwordField.becomeFirstResponder()
+        case passwordField:
+            loginButton.becomeFirstResponder()
+        default:
+            return true
+        }
         return true
     }
     
@@ -107,7 +139,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         case pathField:
             guard string.isValidFolderChar else { return false }
             if range.location == 0 {
-                guard string != "/" else { return false }
+                guard string != FWD_SLASH else { return false }
             }
 
             return true

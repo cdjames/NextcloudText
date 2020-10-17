@@ -58,9 +58,48 @@ extension String {
         return String(self[start ..< end])
     }
     
+    /**
+    Trim a string of length 1 from the right side of a string
+     - Parameters:
+        - char: a character (string length 1) to trim
+     */
     mutating func trimRight(all char: String) {
-        while self[self.count-1] == char {
-            self.removeLast()
+        if char.count == 1 {
+            while self[self.count-1] == char {
+                self.removeLast()
+            }
         }
+    }
+    
+    /**
+    Trim a string of length 1 from the left side of a string
+     - Parameters:
+        - char: a character (string length 1) to trim
+     */
+    mutating func trimLeft(all char: String) {
+        if char.count == 1 {
+            while self[0] == char {
+                self.removeLast()
+            }
+        }
+    }
+    
+    /**
+    Trim a string of length 1 from both sides of a string
+     - Parameters:
+        - char: a character (string length 1) to trim
+     */
+    mutating func trimBoth(all char: String) {
+        trimLeft(all: char)
+        trimRight(all: char)
+    }
+    
+    /**
+    Prepend a string of length 1 if not already present
+     - Parameters:
+        - char: a character (string length 1) to prepend
+     */
+    mutating func prepend(one char: String) {
+        if char.count == 1 && self[0] != char { self = char + self }
     }
 }

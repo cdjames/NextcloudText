@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F005E664253BBBB7006603F8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E663253BBBB7006603F8 /* WebViewController.swift */; };
 		F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED625373ECC00BEA536 /* String+Extensions.swift */; };
 		F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED92537B43800BEA536 /* UrlBuilder.swift */; };
 		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F005E663253BBBB7006603F8 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F01CAED625373ECC00BEA536 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F01CAED92537B43800BEA536 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 				F0D11F092536A124002EB664 /* SceneDelegate.swift */,
 				F0D11F0B2536A124002EB664 /* LoginViewController.swift */,
 				F0D11F0D2536A124002EB664 /* Main.storyboard */,
+				F005E663253BBBB7006603F8 /* WebViewController.swift */,
 				F0D11F102536A125002EB664 /* Assets.xcassets */,
 				F0D11F122536A125002EB664 /* LaunchScreen.storyboard */,
 				F0D11F152536A125002EB664 /* Info.plist */,
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */,
+				F005E664253BBBB7006603F8 /* WebViewController.swift in Sources */,
 				F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */,
 				F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */,
 				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,

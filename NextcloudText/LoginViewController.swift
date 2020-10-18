@@ -24,7 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     let ALRT_BTN_TXT = "OK"
     
     //MARK: View Controller Functions
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         serverField.delegate = self
@@ -42,7 +43,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      - Parameters:
         - alert: a message to the user
      */
-    func showAlert(for alert: String) {
+    func showAlert(for alert: String)
+    {
         let alertController = UIAlertController(title: nil, message: alert, preferredStyle: UIAlertController.Style.alert)
         let alertAction = UIAlertAction(title: ALRT_BTN_TXT, style: .default, handler: nil)
         alertController.addAction(alertAction)
@@ -69,7 +71,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      - Returns:
         - true or false
      */
-    func checkFields() -> Bool{
+    func checkFields() -> Bool
+    {
         pathField.text!.trimRight(all: FWD_SLASH)
         
         guard serverField.text!.isValidURL, userNameField.text!.isNotEmpty, passwordField.text!.isNotEmpty else {
@@ -87,10 +90,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      - Returns:
         - true or false
      */
-    @IBAction func attemptLogin(_ sender: Any) { // loginButton action
+    @IBAction func attemptLogin(_ sender: Any) // loginButton action
+    {
         guard let server = serverField.text else { return }
-        guard let usr = userNameField.text else { return }
-        guard let psswd = passwordField.text else { return }
+//        guard let usr = userNameField.text else { return }
+//        guard let psswd = passwordField.text else { return }
         
         var components = URLComponents()
         components.scheme = HTTPS
@@ -100,7 +104,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        guard let url = UrlBuilder.create(withScheme: HTTPS, hostedBy: server, atPath: LOGIN_PREDICATE).url else { return }
         guard let url = components.url else { return }
 
-        showAlert(for: url.absoluteString) // testing only
+//        showAlert(for: url.absoluteString) // testing only
+        let wv = WebViewController(with: url)
+        self.present(wv, animated: true, completion: nil)
 
     }
     
@@ -132,10 +138,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField,
-    shouldChangeCharactersIn range: NSRange,
-          replacementString string: String) -> Bool
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool
     {
         switch textField {
+        // don't allow user to begin path with forward slash
         case pathField:
             guard string.isValidFolderChar else { return false }
             if range.location == 0 {

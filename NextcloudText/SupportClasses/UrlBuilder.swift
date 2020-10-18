@@ -15,27 +15,45 @@ struct UrlBuilder {
     let scheme: String
     let host: String
     let path: String
-}
+    var url: URL?
+    var components: URLComponents
+    
+     /**
+     custom init method
+     - Parameters:
+         - url:object containing the necessary url
+    */
+    init(with scheme: String, at host: String, opt path: String?) {
+        self.scheme = scheme
+        self.host = host
+        self.path = path ?? ""
+        
+        components = URLComponents()
+        components.scheme = self.scheme
+        components.host = self.host
+        components.path = self.path
+        components.path.prepend(one: FWD_SLASH)
 
-extension UrlBuilder {
-    static func create(withScheme s: String, hostedBy h: String, atPath p: String) -> UrlBuilder {
-        return UrlBuilder(
-            scheme: s,
-            host: h,
-            path: p
-        )
+        url = components.url
     }
 }
 
 extension UrlBuilder {
-    // We still have to keep 'url' as an optional, since we're
-    // dealing with dynamic components that could be invalid.
-    var url: URL? {
-        var components = URLComponents()
-        components.scheme = scheme
-        components.host = host
-        components.path = path
-
-        return components.url
+    func getUrl() -> URL? {
+        return self.url ?? nil
     }
 }
+
+//extension UrlBuilder {
+//    // We still have to keep 'url' as an optional, since we're
+//    // dealing with dynamic components that could be invalid.
+//    var url: URL? {
+//        var components = URLComponents()
+//        components.scheme = self.scheme
+//        components.host = self.host
+//        components.path = self.path + LOGIN_PREDICATE
+//        components.path.prepend(one: FWD_SLASH)
+//
+//        return components.url
+//    }
+//}

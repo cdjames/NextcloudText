@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F005E664253BBBB7006603F8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E663253BBBB7006603F8 /* WebViewController.swift */; };
+		F005E667253CA447006603F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E666253CA447006603F8 /* Constants.swift */; };
 		F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED625373ECC00BEA536 /* String+Extensions.swift */; };
 		F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED92537B43800BEA536 /* UrlBuilder.swift */; };
 		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		F005E663253BBBB7006603F8 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		F005E666253CA447006603F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F01CAED625373ECC00BEA536 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F01CAED92537B43800BEA536 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F005E665253CA432006603F8 /* Includes */ = {
+			isa = PBXGroup;
+			children = (
+				F005E666253CA447006603F8 /* Constants.swift */,
+			);
+			path = Includes;
+			sourceTree = "<group>";
+		};
 		F01CAED525373E7F00BEA536 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		F0D11F062536A124002EB664 /* NextcloudText */ = {
 			isa = PBXGroup;
 			children = (
+				F005E665253CA432006603F8 /* Includes */,
 				F01CAED82537B40300BEA536 /* SupportClasses */,
 				F01CAED525373E7F00BEA536 /* Extensions */,
 				F0D11F072536A124002EB664 /* AppDelegate.swift */,
@@ -229,6 +240,7 @@
 				F005E664253BBBB7006603F8 /* WebViewController.swift in Sources */,
 				F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */,
 				F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */,
+				F005E667253CA447006603F8 /* Constants.swift in Sources */,
 				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,
 				F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */,
 			);

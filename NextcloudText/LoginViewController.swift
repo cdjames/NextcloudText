@@ -16,13 +16,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    //MARK: Constants
-    let HTTPS = "https"
-    let LOGIN_PREDICATE = "/index.php/login/v2"
-    let FWD_SLASH = "/"
-    let EMPTY = ""
-    let ALRT_BTN_TXT = "OK"
-    
     //MARK: View Controller Functions
     override func viewDidLoad()
     {
@@ -80,7 +73,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return false
         }
         
-        
         return true
     }
     
@@ -92,26 +84,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      */
     @IBAction func attemptLogin(_ sender: Any) // loginButton action
     {
+        // check the textfields and activate or deactivate
+        activateButton(checkFields())
+        guard (loginButton.isEnabled == true) else { return }
         guard let server = serverField.text else { return }
-//        guard let usr = userNameField.text else { return }
-//        guard let psswd = passwordField.text else { return }
+        let path = (pathField.text ?? EMPTY) + LOGIN_PREDICATE
         
-        var components = URLComponents()
-        components.scheme = HTTPS
-        components.host = server
-        components.path = (pathField.text ?? EMPTY) + LOGIN_PREDICATE
-        components.path.prepend(one: FWD_SLASH)
-//        guard let url = UrlBuilder.create(withScheme: HTTPS, hostedBy: server, atPath: LOGIN_PREDICATE).url else { return }
-        guard let url = components.url else { return }
+        guard let url = UrlBuilder(with: HTTPS, at: server, opt: path).getUrl() else { return }
 
         //TODO: get the login url for the user and the polling endpoint
         //1. send post message to login v2
         //2. get URL returned or error
         //3. send user to that
-//        showAlert(for: url.absoluteString) // testing only
-        let wv = WebViewController(with: url)
-        self.present(wv, animated: true, completion: nil)
-
+        showAlert(for: url.absoluteString) // testing only
+//        let wv = WebViewController(with: url)
+//        self.present(wv, animated: true, completion: nil)
+        loginButton.resignFirstResponder()
     }
     
     //MARK: UITextFieldDelegate

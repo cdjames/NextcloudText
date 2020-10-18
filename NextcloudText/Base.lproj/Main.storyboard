@@ -124,11 +124,12 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xy5-hR-y2S">
                                 <rect key="frame" x="67" y="364" width="280" height="168"/>
                                 <subviews>
-                                    <wkWebView contentMode="scaleToFill" id="fH6-wg-YYz">
+                                    <wkWebView contentMode="scaleToFill" customUserAgent="NextCloudText" id="fH6-wg-YYz">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="168"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO" allowsPictureInPictureMediaPlayback="NO">
+                                            <dataDetectorTypes key="dataDetectorTypes"/>
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>

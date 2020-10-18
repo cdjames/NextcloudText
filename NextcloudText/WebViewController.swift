@@ -44,8 +44,7 @@ class WebViewController: UIViewController, WKUIDelegate {
         view = loginWebView
     }
     //MARK: View Controller Functions
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         let myURL = URL(string:"https://www.apple.com")
         let myRequest = URLRequest(url: myURL!)

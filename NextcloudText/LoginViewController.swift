@@ -104,6 +104,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        guard let url = UrlBuilder.create(withScheme: HTTPS, hostedBy: server, atPath: LOGIN_PREDICATE).url else { return }
         guard let url = components.url else { return }
 
+        //TODO: get the login url for the user and the polling endpoint
+        //1. send post message to login v2
+        //2. get URL returned or error
+        //3. send user to that
 //        showAlert(for: url.absoluteString) // testing only
         let wv = WebViewController(with: url)
         self.present(wv, animated: true, completion: nil)

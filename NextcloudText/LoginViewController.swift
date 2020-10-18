@@ -6,8 +6,9 @@
 //  Copyright © 2020 Collin James. All rights reserved.
 //
 import UIKit
+import os.log
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate, URLSessionDataDelegate, URLSessionTaskDelegate {
     
     //MARK: Properties
     @IBOutlet weak var serverField: UITextField!
@@ -15,6 +16,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+//    var session: SessionHandler
+    private lazy var session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.waitsForConnectivity = true
+        return URLSession(configuration: configuration,
+                          delegate: self, delegateQueue: nil)
+    }()
+    var receivedData: Data?
+    //MARK: Initializers
+    
+    //if adding your own init method, must conform to super init protocol also
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     //MARK: View Controller Functions
     override func viewDidLoad()
@@ -60,9 +75,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     /**
-    Checks all the text fields for appropriate values
+     Checks all the text fields for appropriate values
      - Returns:
-        - true or false
+     - true or false
      */
     func checkFields() -> Bool
     {
@@ -73,6 +88,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return false
         }
         
+        return true
+    }
+    
+    /**
+     Checks all the text fields for appropriate values
+     - Returns:
+     - true or false
+     */
+    func getLoginEndpoint(startingAt url: URL) -> Bool
+    {
         return true
     }
     
@@ -94,12 +119,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         //TODO: get the login url for the user and the polling endpoint
         //1. send post message to login v2
+        startLoad(with: url)
         //2. get URL returned or error
         //3. send user to that
-        showAlert(for: url.absoluteString) // testing only
+//        showAlert(for: url.absoluteString) // testing only
 //        let wv = WebViewController(with: url)
 //        self.present(wv, animated: true, completion: nil)
-        loginButton.resignFirstResponder()
     }
     
     //MARK: UITextFieldDelegate
@@ -144,6 +169,53 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return true
         default:
             return true
+        }
+    }
+    
+    //
+
+    func startLoad(with url: URL) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        receivedData = Data()
+//        let task = session.dataTask(with: request)
+        let url2 = URL(string: "https://google.com/")!
+        let task = session.dataTask(with: url2)
+//        let task = session.dataTask(with: self.url!)
+        task.resume()
+    }
+
+
+    //MARK: Delegate methods
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
+                    completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        guard let response = response as? HTTPURLResponse,
+            (200...299).contains(response.statusCode),
+            let mimeType = response.mimeType,
+            mimeType == "text/html" else {
+            completionHandler(.cancel)
+            return
+        }
+        completionHandler(.allow)
+    }
+
+
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        self.receivedData?.append(data)
+    }
+
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        DispatchQueue.main.async {
+            if let error = error {
+                //handleClientError(error)
+                os_log("Error", log: OSLog.default, type: .debug)
+            } else if let receivedData = self.receivedData,
+                let string = String(data: receivedData, encoding: .utf8) {
+//                self.webView.loadHTMLString(string, baseURL: task.currentRequest?.url)
+                os_log("received valid response", log: OSLog.default, type: .debug)
+            }
         }
     }
 }

@@ -10,6 +10,7 @@
 		F005E664253BBBB7006603F8 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E663253BBBB7006603F8 /* WebViewController.swift */; };
 		F005E667253CA447006603F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E666253CA447006603F8 /* Constants.swift */; };
 		F005E669253CAD5A006603F8 /* SessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E668253CAD5A006603F8 /* SessionHandler.swift */; };
+		F005E66B253D0F0F006603F8 /* LoginV2Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005E66A253D0F0F006603F8 /* LoginV2Structs.swift */; };
 		F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED625373ECC00BEA536 /* String+Extensions.swift */; };
 		F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED92537B43800BEA536 /* UrlBuilder.swift */; };
 		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		F005E663253BBBB7006603F8 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		F005E666253CA447006603F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F005E668253CAD5A006603F8 /* SessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHandler.swift; sourceTree = "<group>"; };
+		F005E66A253D0F0F006603F8 /* LoginV2Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginV2Structs.swift; sourceTree = "<group>"; };
 		F01CAED625373ECC00BEA536 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F01CAED92537B43800BEA536 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 			children = (
 				F01CAED92537B43800BEA536 /* UrlBuilder.swift */,
 				F005E668253CAD5A006603F8 /* SessionHandler.swift */,
+				F005E66A253D0F0F006603F8 /* LoginV2Structs.swift */,
 			);
 			path = SupportClasses;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */,
 				F005E667253CA447006603F8 /* Constants.swift in Sources */,
 				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,
+				F005E66B253D0F0F006603F8 /* LoginV2Structs.swift in Sources */,
 				F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

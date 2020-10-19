@@ -179,9 +179,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         request.httpMethod = "POST"
         receivedData = Data()
         let task = session.dataTask(with: request)
-//        let url2 = URL(string: "https://google.com/")!
-//        let task = session.dataTask(with: url2)
-//        let task = session.dataTask(with: url)
         task.resume()
     }
 
@@ -201,12 +198,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         completionHandler(.allow)
     }
 
-
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         self.receivedData?.append(data)
-//        let string = String(data: receivedData!, encoding: .utf8)
+                let string = String(data: receivedData!, encoding: .utf8)
+        let decoder = JSONDecoder()
+        do {
+            let endpoint = try decoder.decode(PollLogin.self, from: receivedData!)
+            DispatchQueue.main.async {
+                self.showAlert(for: endpoint.poll.token)
+            }
+//        } catch DecodingError.dataCorrupted { // enable for debugging
+//            return
+//        } catch let DecodingError.keyNotFound(key, context) {
+//            return
+//        } catch DecodingError.typeMismatch {
+//            return
+//        } catch DecodingError.valueNotFound {
+//            return
+        } catch {
+            return
+        }
+        
     }
-
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         DispatchQueue.main.async {

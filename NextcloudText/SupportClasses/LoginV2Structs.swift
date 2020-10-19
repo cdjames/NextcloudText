@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 /**
 add summary here
@@ -25,8 +26,10 @@ struct PollLogin: Codable {
             self = try decoder.decode(PollLogin.self, from: data)
 //        } catch DecodingError.dataCorrupted { // enable for debugging
 //            return
-//        } catch let DecodingError.keyNotFound(key, context) {
-//            return
+        } catch let DecodingError.keyNotFound(key, context) {
+            os_log(.debug, "keyNotFound: %s", key.debugDescription)
+            os_log(.debug, "context: %s", context.debugDescription)
+            return
 //        } catch DecodingError.typeMismatch {
 //            return
 //        } catch DecodingError.valueNotFound {

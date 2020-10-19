@@ -178,10 +178,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         receivedData = Data()
-//        let task = session.dataTask(with: request)
-        let url2 = URL(string: "https://google.com/")!
-        let task = session.dataTask(with: url2)
-//        let task = session.dataTask(with: self.url!)
+        let task = session.dataTask(with: request)
+//        let url2 = URL(string: "https://google.com/")!
+//        let task = session.dataTask(with: url2)
+//        let task = session.dataTask(with: url)
         task.resume()
     }
 
@@ -191,9 +191,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
                     completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let response = response as? HTTPURLResponse,
-            (200...299).contains(response.statusCode),
-            let mimeType = response.mimeType,
-            mimeType == "text/html" else {
+            (200...299).contains(response.statusCode)
+//            let mimeType = response.mimeType,
+//            mimeType == "text/html"
+            else {
             completionHandler(.cancel)
             return
         }
@@ -203,6 +204,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         self.receivedData?.append(data)
+//        let string = String(data: receivedData!, encoding: .utf8)
     }
 
 

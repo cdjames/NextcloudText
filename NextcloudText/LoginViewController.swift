@@ -200,36 +200,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         self.receivedData?.append(data)
-                let string = String(data: receivedData!, encoding: .utf8)
-        let decoder = JSONDecoder()
-        do {
-            let endpoint = try decoder.decode(PollLogin.self, from: receivedData!)
-            DispatchQueue.main.async {
-                self.showAlert(for: endpoint.poll.token)
-            }
-//        } catch DecodingError.dataCorrupted { // enable for debugging
-//            return
-//        } catch let DecodingError.keyNotFound(key, context) {
-//            return
-//        } catch DecodingError.typeMismatch {
-//            return
-//        } catch DecodingError.valueNotFound {
-//            return
-        } catch {
-            return
+        guard let endpoint = PollLogin(from: receivedData!) else { return }
+        DispatchQueue.main.async {
+            // must be run on the main queue
+            self.showAlert(for: (endpoint.poll!.token))
         }
-        
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         DispatchQueue.main.async {
             if let error = error {
                 //handleClientError(error)
-                os_log("Error", log: OSLog.default, type: .debug)
+                os_log("Error %s", log: OSLog.default, type: .debug, error.localizedDescription)
             } else if let receivedData = self.receivedData,
                 let string = String(data: receivedData, encoding: .utf8) {
 //                self.webView.loadHTMLString(string, baseURL: task.currentRequest?.url)
-                os_log("received valid response", log: OSLog.default, type: .debug)
+                os_log("received valid response: %s", log: OSLog.default, type: .debug, string)
             }
         }
     }

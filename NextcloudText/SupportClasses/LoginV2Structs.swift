@@ -8,23 +8,37 @@
 
 import Foundation
 
+/**
+add summary here
+ */
 struct PollLogin: Codable {
     struct TokenEndpoint: Codable {
         var token: String
         var endpoint: URL
     }
-    var poll: TokenEndpoint
-    var login: URL
+    var poll: TokenEndpoint?
+    var login: URL?
+    
+    init?(from data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            self = try decoder.decode(PollLogin.self, from: data)
+//        } catch DecodingError.dataCorrupted { // enable for debugging
+//            return
+//        } catch let DecodingError.keyNotFound(key, context) {
+//            return
+//        } catch DecodingError.typeMismatch {
+//            return
+//        } catch DecodingError.valueNotFound {
+//            return
+        } catch {
+            return
+        }
+    }
 }
 
 struct AppLoginCreds: Codable {
     var server: URL
     var loginName: String
     var password: String
-}
-
-struct GroceryProduct: Codable {
-    var name: String
-    var points: Int
-    var description: String?
 }

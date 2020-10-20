@@ -45,3 +45,13 @@ struct AppLoginCreds: Codable {
     var loginName: String
     var password: String
 }
+
+// poll with timer: https://stackoverflow.com/questions/44368019/proper-way-to-do-polling-in-swift
+//var timer: DispatchSourceTimer?
+//let queue = DispatchQueue.global(qos: .background)
+//guard let timer = DispatchSource.makeTimerSource(queue: queue) else { return }
+//timer.scheduleRepeating(deadline: .now(), interval: .seconds(100), leeway: .seconds(1))
+//timer.setEventHandler(handler: {
+//    // Your code
+//})
+//timer.resume()

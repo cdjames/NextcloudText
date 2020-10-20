@@ -16,16 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-//    var session: SessionHandler
-    private lazy var session: URLSession = {
-        let configuration = URLSessionConfiguration.default
-        configuration.waitsForConnectivity = true
-        return URLSession(configuration: configuration,
-                          delegate: self, delegateQueue: nil)
-    }()
-    var receivedData: Data?
-    //MARK: Initializers
-    
+
+    //MARK: Initializers    
     //if adding your own init method, must conform to super init protocol also
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -119,7 +111,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
 
         //TODO: get the login url for the user and the polling endpoint
         //1. send post message to login v2
-        startLoad(with: url)
+        let session = SessionHandler()
+        session.startLoad(with: url)
         //2. get URL returned or error
         //3. send user to that
 //        showAlert(for: url.absoluteString) // testing only
@@ -172,51 +165,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         }
     }
     
-    //
-
-    func startLoad(with url: URL) {
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        receivedData = Data()
-        let task = session.dataTask(with: request)
-        task.resume()
-    }
-
 
     //MARK: Delegate methods
-
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
-                    completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        guard let response = response as? HTTPURLResponse,
-            (200...299).contains(response.statusCode)
-//            let mimeType = response.mimeType,
-//            mimeType == "text/html"
-            else {
-            completionHandler(.cancel)
-            return
-        }
-        completionHandler(.allow)
-    }
-
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        self.receivedData?.append(data)
-        guard let endpoint = PollLogin(from: receivedData!) else { return }
-        DispatchQueue.main.async {
-            // must be run on the main queue
-            self.showAlert(for: (endpoint.poll!.token))
-        }
-    }
-
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        DispatchQueue.main.async {
-            if let error = error {
-                //handleClientError(error)
-                os_log("Error %s", log: OSLog.default, type: .debug, error.localizedDescription)
-            } else if let receivedData = self.receivedData,
-                let string = String(data: receivedData, encoding: .utf8) {
-//                self.webView.loadHTMLString(string, baseURL: task.currentRequest?.url)
-                os_log("received valid response: %s", log: OSLog.default, type: .debug, string)
-            }
-        }
-    }
 }

@@ -93,6 +93,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         return true
     }
     
+//    func endpointLoadCompletion (_ data: Data?, _ rsp: URLResponse?, _ err: Error?) {
+//        os_log(.debug, "%s", URLResponse.debugDescription())
+//    }
+    
+    func endpointLoadCompletion (_ endpoint: PollLogin?) {
+        os_log(.debug, "printing from callback: \n%s", endpoint!.poll!.token)
+    }
+
+    func endpointFailure() {
+        os_log(.debug, "load failed")
+    }
     //MARK: Actions
     /**
     Checks all the text fields for appropriate values
@@ -112,7 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         //TODO: get the login url for the user and the polling endpoint
         //1. send post message to login v2
         let session = SessionHandler()
-        session.startLoad(with: url)
+        session.startLoad(with: url, completionHandler: endpointLoadCompletion, onFailure: endpointFailure)
         //2. get URL returned or error
         //3. send user to that
 //        showAlert(for: url.absoluteString) // testing only

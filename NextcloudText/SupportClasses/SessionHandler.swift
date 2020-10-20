@@ -10,7 +10,7 @@ import Foundation
 import os.log
 
 class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, URLSessionTaskDelegate {
-
+    var successCbk: PollCbk?
     var receivedData: Data?
     var url: URL?
     private lazy var session: URLSession = {
@@ -26,10 +26,12 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
     }
 
     init(with url: URL?) {
+        self.successCbk = nil
         self.url = url
     }
     
-    func startLoad(with url: URL) {
+    func startLoad(with url: URL, completionHandler: @escaping PollCbk, onFailure: VoidVoidCbk) {
+        self.successCbk = completionHandler
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         receivedData = Data()
@@ -43,8 +45,6 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
                     completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let response = response as? HTTPURLResponse,
         (200...299).contains(response.statusCode)
-//            let mimeType = response.mimeType,
-//            mimeType == "text/html"
         else {
             completionHandler(.cancel)
             return
@@ -56,6 +56,7 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         self.receivedData?.append(data)
         guard let endpoint = PollLogin(from: receivedData!) else { return }
+        self.successCbk!(endpoint)
         // if you get the endpoint and token, send it back to caller (in callback?)
 //        DispatchQueue.main.async {
 //            // must be run on the main queue

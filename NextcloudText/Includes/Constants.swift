@@ -12,3 +12,6 @@ let LOGIN_PREDICATE = "/index.php/login/v2"
 let FWD_SLASH = "/"
 let EMPTY = ""
 let ALRT_BTN_TXT = "OK"
+
+typealias PollCbk = ((PollLogin?) -> Void)
+typealias VoidVoidCbk = (() -> Void)

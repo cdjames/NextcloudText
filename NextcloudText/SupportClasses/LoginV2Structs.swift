@@ -19,17 +19,17 @@ struct PollLogin: Codable {
     }
     var poll: TokenEndpoint?
     var login: URL?
-    
+
     init?(from data: Data) {
         let decoder = JSONDecoder()
         do {
-            self = try decoder.decode(PollLogin.self, from: data)
+            self = try decoder.decode(type(of: self), from: data)
 //        } catch DecodingError.dataCorrupted { // enable for debugging
 //            return
-        } catch let DecodingError.keyNotFound(key, context) {
-            os_log(.debug, "keyNotFound: %s", key.debugDescription)
-            os_log(.debug, "context: %s", context.debugDescription)
-            return
+//        } catch let DecodingError.keyNotFound(key, context) {
+//            os_log(.debug, "keyNotFound: %s", key.debugDescription)
+//            os_log(.debug, "context: %s", context.debugDescription)
+//            return
 //        } catch DecodingError.typeMismatch {
 //            return
 //        } catch DecodingError.valueNotFound {
@@ -41,9 +41,28 @@ struct PollLogin: Codable {
 }
 
 struct AppLoginCreds: Codable {
-    var server: URL
-    var loginName: String
-    var password: String
+    var server: URL?
+    var loginName: String?
+    var password: String?
+    
+    init?(from data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            self = try decoder.decode(type(of: self), from: data)
+//        } catch DecodingError.dataCorrupted { // enable for debugging
+//            return
+//        } catch let DecodingError.keyNotFound(key, context) {
+//            os_log(.debug, "keyNotFound: %s", key.debugDescription)
+//            os_log(.debug, "context: %s", context.debugDescription)
+//            return
+//        } catch DecodingError.typeMismatch {
+//            return
+//        } catch DecodingError.valueNotFound {
+//            return
+        } catch {
+            return
+        }
+    }
 }
 
 // poll with timer: https://stackoverflow.com/questions/44368019/proper-way-to-do-polling-in-swift

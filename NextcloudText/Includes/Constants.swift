@@ -9,6 +9,7 @@
 import Foundation
 
 //MARK: Constants
+let HTTP = "http"
 let HTTPS = "https"
 let LOGIN_PREDICATE = "/index.php/login/v2"
 let FWD_SLASH = "/"

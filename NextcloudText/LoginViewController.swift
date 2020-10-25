@@ -117,8 +117,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         guard (loginButton.isEnabled == true) else { return }
         guard let server = serverField.text else { return }
         let path = (pathField.text ?? EMPTY) + LOGIN_PREDICATE
-        
-        guard let url = UrlBuilder(with: HTTPS, at: server, opt: path).getUrl() else { return }
+        #if DEBUG
+        guard let url = UrlBuilder(with: HTTP, at: server, opt: path).getUrl() else { return } // testing
+        #else
+        guard let url = UrlBuilder(with: HTTPS, at: server, opt: path).getUrl() else { return } // production
+        #endif
 
         //TODO: get the login url for the user and the polling endpoint
         //1. send post message to login v2

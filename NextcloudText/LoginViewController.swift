@@ -16,7 +16,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-
+    var wv: WebViewController?
+    var session = SessionHandler()
+    
     //MARK: Initializers    
     //if adding your own init method, must conform to super init protocol also
     required init?(coder aDecoder: NSCoder) {
@@ -69,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     /**
      Checks all the text fields for appropriate values
      - Returns:
-     - true or false
+        - true or false
      */
     func checkFields() -> Bool
     {
@@ -84,26 +86,66 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     }
     
     /**
-     Checks all the text fields for appropriate values
-     - Returns:
-     - true or false
+     Dismisses a webview presented as a modal
+    - If used in a callback from background thread, must be called on the main thread
      */
-    func getLoginEndpoint(startingAt url: URL) -> Bool
-    {
-        return true
+    func dismissWebView() {
+        if self.wv != nil {
+            self.wv!.dismissed = true
+            self.wv!.dismiss(animated: true, completion: nil)
+        }
     }
     
-//    func endpointLoadCompletion (_ data: Data?, _ rsp: URLResponse?, _ err: Error?) {
-//        os_log(.debug, "%s", URLResponse.debugDescription())
-//    }
-    
+    //MARK: Callbacks
+    /**
+     Called when the SessionHandler receives a successful response from the server.
+        Creates a webview pointing to the returned URL where the user can log in
+     - Parameters:
+        - endpoint: an optional structure containing a login url
+     */
     func endpointLoadCompletion (_ endpoint: PollLogin?) {
-        os_log(.debug, "printing from callback: \n%s", endpoint!.poll!.token)
+        os_log(.debug, "printing from endpointLoadCompletion callback: \n%s", endpoint!.login!.absoluteString)
+        DispatchQueue.main.async{
+            self.wv = WebViewController(with: endpoint?.login, and: self.userDismissedLogin)
+            self.present(self.wv!, animated: true, completion: nil)            
+        }
     }
 
+    /**
+     Called when there is an error in the SessionHandler. Dismisses the webview and displays an error.
+     */
     func endpointFailure() {
         os_log(.debug, "load failed")
+        DispatchQueue.main.async {
+            self.dismissWebView()
+        }
+        self.session.stopPoll = true
+        //TODO: display error to user
     }
+    
+    /**
+     Called when the user dismisses the login webview
+     */
+    func userDismissedLogin() {
+        os_log(.debug, "login screen dismissed by user")
+        self.session.stopPoll = true
+        //TODO: display error to user
+    }
+
+    /**
+     Called when the SessionHandler receives a successful polling response from the server.
+        Saves the login credentials in the keychain. At this point login is finished.
+     - Parameters:
+        - creds: an optional structure containing a server url, login name and password
+     */
+    func pollingCompletion(creds: AppLoginCreds?) -> Void {
+        os_log(.debug, "polling succeeded")
+        // save login credentials in keychain
+        DispatchQueue.main.async {
+            self.dismissWebView()
+        }
+    }
+    
     //MARK: Actions
     /**
     Checks all the text fields for appropriate values
@@ -125,13 +167,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
 
         //TODO: get the login url for the user and the polling endpoint
         //1. send post message to login v2
-        let session = SessionHandler()
-        session.startLoad(with: url, completionHandler: endpointLoadCompletion, onFailure: endpointFailure)
-        //2. get URL returned or error
-        //3. send user to that
-//        showAlert(for: url.absoluteString) // testing only
-//        let wv = WebViewController(with: url)
-//        self.present(wv, animated: true, completion: nil)
+        self.session.startLoad(with: url, completionHandler: endpointLoadCompletion, pollingCompletion: pollingCompletion, onFailure: endpointFailure)
     }
     
     //MARK: UITextFieldDelegate

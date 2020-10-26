@@ -38,7 +38,7 @@ class NextcloudTextTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let loginName = "abc"
         var finalData = Data()
-        let data: Data? = "{\"server\":\"https://abc.com\", \"loginName\":\"abc\", \"password\":\"abc\"}".data(using: .utf8, allowLossyConversion: false)!
+        let data: Data? = "{\"server\":\"https://abc.com\", \"loginName\":\"abc\", \"appPassword\":\"abc\"}".data(using: .utf8, allowLossyConversion: false)!
         finalData.append(data!)
         let testvar = AppLoginCreds(from: finalData)
         XCTAssertNotNil(testvar)

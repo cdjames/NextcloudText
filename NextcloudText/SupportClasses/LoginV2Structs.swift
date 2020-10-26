@@ -43,7 +43,7 @@ struct PollLogin: Codable {
 struct AppLoginCreds: Codable {
     var server: URL?
     var loginName: String?
-    var password: String?
+    var appPassword: String?
     
     init?(from data: Data) {
         let decoder = JSONDecoder()

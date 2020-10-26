@@ -12,6 +12,7 @@ import os.log
 class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, URLSessionTaskDelegate {
     var successCbk: PollCbk?
     var failureCbk: VoidVoidCbk?
+    var pollingCbk: AppLoginCbk?
     var pollingRequest: URLRequest?
     var receivedData: Data?
     var url: URL?
@@ -27,7 +28,7 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
         return URLSession(configuration: configuration,
                           delegate: self, delegateQueue: nil)
     }()
-    var timer: DispatchSourceTimer?
+    var stopPoll: Bool
 
     // convenient way to initiailize with nil object
     override convenience init() {
@@ -38,18 +39,21 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
         self.pollingRequest = nil
         self.successCbk = nil
         self.failureCbk = nil
-        self.timer = nil
+        self.pollingCbk = nil
         self.url = url
+        self.stopPoll = false
     }
     
-    func startLoad(with url: URL, completionHandler: @escaping PollCbk, onFailure: @escaping VoidVoidCbk) {
+    func startLoad(with url: URL, completionHandler: @escaping PollCbk, pollingCompletion: @escaping AppLoginCbk, onFailure: @escaping VoidVoidCbk) {
         self.successCbk = completionHandler
+        self.pollingCbk = pollingCompletion
         self.failureCbk = onFailure
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         receivedData = Data()
         let task = initialSession.dataTask(with: request)
         task.resume()
+        self.stopPoll = false
     }
     
     func startPollingRequest() {
@@ -81,16 +85,15 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
             completionHandler(.allow)
         } else {
             completionHandler(.cancel)
-            
+            guard self.stopPoll == false else { return }
             switch session {
             case self.pollingSession:
                 // keep trying until you get 200 (keep track of how many times?)
-                let queue = DispatchQueue.global(qos: .background)
-                // poll with timer: https://stackoverflow.com/questions/44368019/proper-way-to-do-polling-in-swift
-                timer = DispatchSource.makeTimerSource(queue: queue)
-                timer?.schedule(deadline: POLL_INTERVAL)
-                timer?.setEventHandler(handler: startPollingRequest)
-                timer?.resume()
+                //https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(POLL_SEC), qos: .utility)
+                {
+                    self.startPollingRequest()
+                }
                 break
             default: break
             }
@@ -99,6 +102,7 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
 
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+        guard self.stopPoll == false else { return }
         switch session {
         case self.initialSession:
             self.receivedData?.append(data)
@@ -108,7 +112,7 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
             }
             // if you get the endpoint and token, send it back to caller in callback
             self.successCbk!(endpoint)
-            
+
             // now start polling
             self.pollingRequest = assemblePollingRequest(with: endpoint)
             startPollingRequest()
@@ -120,14 +124,15 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
                 "appPassword":"yKTVA4zgxjfivy52WqD8kW3M2pKGQr6srmUXMipRdunxjPFripJn0GMfmtNOqOolYSuJ6sCN"
             } */
             self.receivedData?.append(data)
+            guard let creds = AppLoginCreds(from: self.receivedData!) else {
+                self.failureCbk!()
+                return
+            }
+                // if you get the credentials, send it back to caller in callback
+            self.pollingCbk!(creds)
         default:
             return
         }
-        
-//        DispatchQueue.main.async {
-//            // must be run on the main queue
-//            self.showAlert(for: (endpoint.poll!.token))
-//        }
     }
 
 
@@ -143,6 +148,5 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
             }
         }
     }
-
 }
 

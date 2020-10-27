@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    //https://developer.apple.com/documentation/coredata/setting_up_a_core_data_stack
+    lazy var persistentContainer: PersistentContainer = {
+        let container = PersistentContainer(name: "CoreDataModel")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable to load persistent stores: \(error)")
+            }
+        }
+        return container
+    }()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,6 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        if let rootVC = window?.rootViewController as? LoginViewController {
+        rootVC.container = persistentContainer
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

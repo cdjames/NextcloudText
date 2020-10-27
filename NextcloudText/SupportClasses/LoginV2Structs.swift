@@ -49,16 +49,16 @@ struct AppLoginCreds: Codable {
         let decoder = JSONDecoder()
         do {
             self = try decoder.decode(type(of: self), from: data)
-//        } catch DecodingError.dataCorrupted { // enable for debugging
-//            return
-//        } catch let DecodingError.keyNotFound(key, context) {
-//            os_log(.debug, "keyNotFound: %s", key.debugDescription)
-//            os_log(.debug, "context: %s", context.debugDescription)
-//            return
-//        } catch DecodingError.typeMismatch {
-//            return
-//        } catch DecodingError.valueNotFound {
-//            return
+            //        } catch DecodingError.dataCorrupted { // enable for debugging
+            //            return
+            //        } catch let DecodingError.keyNotFound(key, context) {
+            //            os_log(.debug, "keyNotFound: %s", key.debugDescription)
+            //            os_log(.debug, "context: %s", context.debugDescription)
+            //            return
+            //        } catch DecodingError.typeMismatch {
+            //            return
+            //        } catch DecodingError.valueNotFound {
+            //            return
         } catch {
             return
         }

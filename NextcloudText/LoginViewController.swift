@@ -7,6 +7,7 @@
 //
 import UIKit
 import os.log
+import CoreData
 
 class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate, URLSessionDataDelegate, URLSessionTaskDelegate {
     
@@ -18,6 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     @IBOutlet weak var loginButton: UIButton!
     var wv: WebViewController?
     var session = SessionHandler()
+    var container: NSPersistentContainer!
     
     //MARK: Initializers    
     //if adding your own init method, must conform to super init protocol also
@@ -36,10 +38,51 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         passwordField.delegate = self
         // check the textfields and activate or deactivate
         activateButton(checkFields()) // try for rounded button: https://nshipster.com/ibinspectable-ibdesignable/
+        guard container != nil else {
+            fatalError("This view needs a persistent container.")
+        }
+        // The persistent container is available.
     }
     
     //MARK: Helpers
     // from https://github.com/Arrlindii/AAValidators/blob/master/Validators/Validators/ViewController.swift
+    
+    /**
+     Store the user name and server  in CoreData
+     https://www.raywenderlich.com/7569-getting-started-with-core-data-tutorial#toc-anchor-003
+     - Parameters:
+     - creds: a structure containing the credentials
+     */
+    func saveCreds(for name: String, at server: String)
+    {
+        // grab a reference to the scene
+        guard let sceneDelegate =
+          UIApplication.shared.delegate as? SceneDelegate else {
+          return
+        }
+        
+        // get the container
+        let myContainer = sceneDelegate.persistentContainer
+        
+        // get a context
+        let managedContext = myContainer.viewContext
+        
+        // get an entity in the context
+        let entity =
+          NSEntityDescription.entity(forEntityName: "AppLoginUser",
+                                     in: managedContext)!
+        
+        // get a managed object from the entity
+        let user = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        // set the values in the managed object
+        user.setValue(name, forKeyPath: "loginName")
+        user.setValue(server, forKeyPath: "server")
+
+        // do the actual saving
+        myContainer.saveContext(with: managedContext)
+    }
     
     /**
      Store the credentials in the keychain
@@ -60,6 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
         
         // storage was successful; now store the username somewhere else so you can search later
+        
         
     }
     

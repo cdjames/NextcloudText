@@ -14,6 +14,7 @@
 		F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED625373ECC00BEA536 /* String+Extensions.swift */; };
 		F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01CAED92537B43800BEA536 /* UrlBuilder.swift */; };
 		F0B7DADF2545E39B00CC23D3 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DADE2545E39B00CC23D3 /* Aliases.swift */; };
+		F0B7DAE12546602300CC23D3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DAE02546602300CC23D3 /* Enums.swift */; };
 		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
 		F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F092536A124002EB664 /* SceneDelegate.swift */; };
 		F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F0B2536A124002EB664 /* LoginViewController.swift */; };
@@ -41,6 +42,7 @@
 		F01CAED625373ECC00BEA536 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F01CAED92537B43800BEA536 /* UrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlBuilder.swift; sourceTree = "<group>"; };
 		F0B7DADE2545E39B00CC23D3 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
+		F0B7DAE02546602300CC23D3 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D11F072536A124002EB664 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D11F092536A124002EB664 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				F005E666253CA447006603F8 /* Constants.swift */,
 				F0B7DADE2545E39B00CC23D3 /* Aliases.swift */,
+				F0B7DAE02546602300CC23D3 /* Enums.swift */,
 			);
 			path = Includes;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,
 				F005E66B253D0F0F006603F8 /* LoginV2Structs.swift in Sources */,
 				F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */,
+				F0B7DAE12546602300CC23D3 /* Enums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

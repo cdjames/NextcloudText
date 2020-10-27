@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
             endingLineNumber = "165"
-            landmarkName = "attemptLogin(_:)"
+            landmarkName = "pollingCompletion(creds:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
             endingLineNumber = "163"
-            landmarkName = "attemptLogin(_:)"
-            landmarkType = "7">
+            landmarkName = "LoginViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "pollingCompletion(creds:)"
+            landmarkName = "endpointFailure()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -96,8 +96,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
             endingLineNumber = "111"
-            landmarkName = "endpointLoadCompletion(_:)"
-            landmarkType = "7">
+            landmarkName = "LoginViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -128,7 +128,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "userDismissedLogin()"
+            landmarkName = "endpointLoadCompletion(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -40,10 +40,33 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
     
     //MARK: Helpers
     // from https://github.com/Arrlindii/AAValidators/blob/master/Validators/Validators/ViewController.swift
+    
+    /**
+     Store the credentials in the keychain
+     https://developer.apple.com/documentation/security/keychain_services/keychain_items/adding_a_password_to_the_keychain
+     - Parameters:
+     - creds: a structure containing the credentials
+     */
+    func storeLoginCredentials(with creds: AppLoginCreds) throws
+    {
+        let account = creds.loginName!
+        let password = creds.appPassword!.data(using: String.Encoding.utf8)!
+        let server = creds.server!.absoluteString
+        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrAccount as String: account,
+                                    kSecAttrServer as String: server,
+                                    kSecValueData as String: password]
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
+        
+        // storage was successful; now store the username somewhere else so you can search later
+        
+    }
+    
     /**
      Raise an alert to the user
      - Parameters:
-        - alert: a message to the user
+     - alert: a message to the user
      */
     func showAlert(for alert: String)
     {

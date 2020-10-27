@@ -16,8 +16,7 @@
 		F0B7DADF2545E39B00CC23D3 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DADE2545E39B00CC23D3 /* Aliases.swift */; };
 		F0B7DAE12546602300CC23D3 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DAE02546602300CC23D3 /* Enums.swift */; };
 		F0B7DAEA2547B47500CC23D3 /* PersistantContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DAE92547B47500CC23D3 /* PersistantContainer.swift */; };
-		F0B7DAEF2547B55500CC23D3 /* AppLoginUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DAED2547B55500CC23D3 /* AppLoginUser+CoreDataClass.swift */; };
-		F0B7DAF02547B55500CC23D3 /* AppLoginUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DAEE2547B55500CC23D3 /* AppLoginUser+CoreDataProperties.swift */; };
+		F0B7DAF22548D9D800CC23D3 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F0B7DAE22547AE3100CC23D3 /* CoreDataModel.xcdatamodeld */; };
 		F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F072536A124002EB664 /* AppDelegate.swift */; };
 		F0D11F0A2536A124002EB664 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F092536A124002EB664 /* SceneDelegate.swift */; };
 		F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D11F0B2536A124002EB664 /* LoginViewController.swift */; };
@@ -48,8 +47,6 @@
 		F0B7DAE02546602300CC23D3 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		F0B7DAE32547AE3100CC23D3 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		F0B7DAE92547B47500CC23D3 /* PersistantContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistantContainer.swift; sourceTree = "<group>"; };
-		F0B7DAED2547B55500CC23D3 /* AppLoginUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppLoginUser+CoreDataClass.swift"; path = "CoreData/AppLoginUser+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F0B7DAEE2547B55500CC23D3 /* AppLoginUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppLoginUser+CoreDataProperties.swift"; path = "CoreData/AppLoginUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F0D11F042536A124002EB664 /* NextcloudText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextcloudText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D11F072536A124002EB664 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D11F092536A124002EB664 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,8 +110,6 @@
 		F0D11EFB2536A124002EB664 = {
 			isa = PBXGroup;
 			children = (
-				F0B7DAED2547B55500CC23D3 /* AppLoginUser+CoreDataClass.swift */,
-				F0B7DAEE2547B55500CC23D3 /* AppLoginUser+CoreDataProperties.swift */,
 				F0D11F062536A124002EB664 /* NextcloudText */,
 				F0D11F1D2536A126002EB664 /* NextcloudTextTests */,
 				F0D11F052536A124002EB664 /* Products */,
@@ -259,15 +254,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B7DAF22548D9D800CC23D3 /* CoreDataModel.xcdatamodeld in Sources */,
 				F0B7DADF2545E39B00CC23D3 /* Aliases.swift in Sources */,
 				F01CAEDA2537B43800BEA536 /* UrlBuilder.swift in Sources */,
 				F005E669253CAD5A006603F8 /* SessionHandler.swift in Sources */,
-				F0B7DAF02547B55500CC23D3 /* AppLoginUser+CoreDataProperties.swift in Sources */,
 				F005E664253BBBB7006603F8 /* WebViewController.swift in Sources */,
 				F01CAED725373ECC00BEA536 /* String+Extensions.swift in Sources */,
 				F0D11F0C2536A124002EB664 /* LoginViewController.swift in Sources */,
 				F005E667253CA447006603F8 /* Constants.swift in Sources */,
-				F0B7DAEF2547B55500CC23D3 /* AppLoginUser+CoreDataClass.swift in Sources */,
 				F0D11F082536A124002EB664 /* AppDelegate.swift in Sources */,
 				F005E66B253D0F0F006603F8 /* LoginV2Structs.swift in Sources */,
 				F0B7DAEA2547B47500CC23D3 /* PersistantContainer.swift in Sources */,

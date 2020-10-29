@@ -95,16 +95,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         let account = creds.loginName!
         let password = creds.appPassword!.data(using: String.Encoding.utf8)!
         let server = creds.server!.absoluteString
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrAccount as String: account,
-                                    kSecAttrServer as String: server,
-                                    kSecValueData as String: password]
-        let status = SecItemAdd(query as CFDictionary, nil)
-        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
+//        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+//                                    kSecAttrAccount as String: account,
+//                                    kSecAttrServer as String: server,
+//                                    kSecValueData as String: password]
+//        let status = SecItemAdd(query as CFDictionary, nil)
+//        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
         
         // storage was successful; now store the username somewhere else so you can search later
-        
-        
+        let dm = NCTDataManager()
+        DispatchQueue.main.async {
+            guard dm.saveCreds(for: account, at: server) == true else {
+                os_log(.debug, "could not save credentials in CoreData")
+                return
+            }
+        }
     }
     
     /**
@@ -207,9 +212,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
      */
     func pollingCompletion(creds: AppLoginCreds?) -> Void {
         os_log(.debug, "polling succeeded")
-        // save login credentials in keychain
         DispatchQueue.main.async {
             self.dismissWebView()
+        }
+        // save login credentials in keychain
+        do
+        {
+            try storeLoginCredentials(with: creds!)
+        } catch {
+            // show error to user
+            os_log(.debug, "failed to save login credentials")
         }
     }
     

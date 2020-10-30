@@ -8,11 +8,14 @@
 
 import XCTest
 @testable import NextcloudText
+import CoreData
 
 class NextcloudTextTests: XCTestCase {
 
     let testString = "this is a test"
-    
+    let testUser = "testUser"
+    let testServer = "test.com"
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -51,6 +54,18 @@ class NextcloudTextTests: XCTestCase {
         let dm = NCTDataManager()
         
         XCTAssertTrue(dm.saveTestData(for: testString))
+
+        var testData = dm.fetchData(ofType: "TestData")
+        XCTAssertNotNil(testData)
+        let object = testData?.last
+        XCTAssertNotNil(object)
+        let string = object?.value(forKey: "testString") as! String
+        XCTAssertTrue(string == testString)
+        testData = dm.fetchData(ofType: "TestData")
+        XCTAssertTrue(dm.saveTestData(for: testString))
+        XCTAssertTrue(dm.deleteAll(ofType: "TestData"))
+        
+        XCTAssertTrue(dm.saveCreds(for: testUser, at: testServer))
     }
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

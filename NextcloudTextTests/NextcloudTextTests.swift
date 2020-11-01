@@ -67,6 +67,23 @@ class NextcloudTextTests: XCTestCase {
         
         XCTAssertTrue(dm.saveCreds(for: testUser, at: testServer))
     }
+    
+    func testKeychain() {
+        let dm = NCTDataManager()
+        let server = URL(string: "www.test.com")!
+        let creds = AppLoginCreds(server: server, user: "test", password: "test")
+        XCTAssertTrue(dm.saveToKeychain(creds as Any))
+        var returnVal = dm.searchKeychain(for: creds as Any)
+        XCTAssertTrue(returnVal != nil)
+        let returnCreds = returnVal as! AppLoginCreds
+        XCTAssertTrue(returnCreds.appPassword == creds.appPassword)
+        XCTAssertTrue(returnCreds.loginName == creds.loginName)
+        XCTAssertTrue(returnCreds.server == creds.server)
+        XCTAssertTrue(dm.deleteFromKeychain(creds as Any))
+        
+        returnVal = dm.searchKeychain(for: creds as Any) as! AppLoginCreds?
+        XCTAssertNil(returnVal)
+    }
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {

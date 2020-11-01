@@ -63,6 +63,12 @@ struct AppLoginCreds: Codable {
             return
         }
     }
+    
+    init(server: URL, user: String, password: String) {
+        self.server = server
+        self.loginName = user
+        self.appPassword = password
+    }
 }
 
 // poll with timer: https://stackoverflow.com/questions/44368019/proper-way-to-do-polling-in-swift

@@ -64,8 +64,6 @@ class NextcloudTextTests: XCTestCase {
         testData = dm.fetchData(ofType: "TestData")
         XCTAssertTrue(dm.saveTestData(for: testString))
         XCTAssertTrue(dm.deleteAll(ofType: "TestData"))
-        
-        XCTAssertTrue(dm.saveCreds(for: testUser, at: testServer))
     }
     
     func testKeychain() {

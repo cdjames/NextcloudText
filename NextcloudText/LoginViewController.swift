@@ -42,14 +42,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
             fatalError("This view needs a persistent container.")
         }
         // The persistent container is available.
-        
-        // test keychain
-//        let dm = NCTDataManager()
-//        let creds = AppLoginCreds(server: URL(string: "www.test.com")!, user: "test", password: "test")
-//        let saved = dm.saveToKeychain(creds as Any)
-//        let returnVal = dm.searchKeychain(for: creds as Any)
-//        let returnCreds = returnVal as! AppLoginCreds
-//        let deleted = dm.deleteFromKeychain(creds as Any)
     }
     
     //MARK: Helpers

@@ -142,7 +142,7 @@ class NCTDataManager {
         case is AppLoginCreds:
             let data = keys as! AppLoginCreds
             query = [kSecClass as String: kSecClassInternetPassword,
-                     kSecAttrAccount as String: data.loginName! as CFString,
+                     kSecAttrAccount as String: data.loginName!,
                      kSecMatchLimit as String: kSecMatchLimitOne,
                      kSecReturnAttributes as String: true,
                      kSecReturnData as String: true]
@@ -190,8 +190,8 @@ class NCTDataManager {
         switch keys {
         case is AppLoginCreds:
             let data = keys as! AppLoginCreds
-            let name = data.loginName! as CFString
-            let svr = data.server!.absoluteString as CFString
+            let name = data.loginName!
+            let svr = data.server!.absoluteString
             let pwd = data.appPassword!.data(using: .utf8)
             query = [kSecClass as String: kSecClassInternetPassword,
                      kSecAttrAccount as String: name,
@@ -217,7 +217,7 @@ class NCTDataManager {
         case is AppLoginCreds:
             let data = keys as! AppLoginCreds
             query = [kSecClass as String: kSecClassInternetPassword,
-                     kSecAttrServer as String: data.server!.absoluteString as CFString]
+                     kSecAttrServer as String: data.server!.absoluteString]
         default:
             os_log(.debug, "NCTDataManager: no handler for this data type")
             return false

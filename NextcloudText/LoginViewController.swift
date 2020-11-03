@@ -90,27 +90,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
      - Parameters:
      - creds: a structure containing the credentials
      */
-    func storeLoginCredentials(with creds: AppLoginCreds) throws
+    func storeLoginCredentials(with creds: AppLoginCreds) -> Bool
     {
         let dm = NCTDataManager()
-        let account = creds.loginName!
-        let password = creds.appPassword!.data(using: String.Encoding.utf8)!
-        let server = creds.server!.absoluteString
         
-        //        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-//                                    kSecAttrAccount as String: account,
-//                                    kSecAttrServer as String: server,
-//                                    kSecValueData as String: password]
-//        let status = SecItemAdd(query as CFDictionary, nil)
-//        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        
-        // storage was successful; now store the username somewhere else so you can search later
-        DispatchQueue.main.async {
-//            guard dm.saveCreds(for: account, at: server) == true else {
-//                os_log(.debug, "could not save credentials in CoreData")
-//                return
-//            }
+        guard dm.saveToKeychain(creds) == true else {
+            os_log(.debug, "could not save password to Keychain")
+            return false
         }
+    
+        // password storage was successful; now store the username somewhere else so you can search later
+        let details = NameServer(for: creds.loginName!, at: creds.server!.absoluteString)
+        guard dm.saveCoreData(for: APPLOGINUSER_CDT, with: details) == true else {
+            os_log(.debug, "could not save credentials in CoreData")
+            return false
+        }
+        
+        return true
     }
     
     /**
@@ -125,6 +121,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     /**
      Activates the login button
      - Parameters:
@@ -178,10 +175,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
      */
     func endpointLoadCompletion (_ endpoint: PollLogin?) {
         os_log(.debug, "printing from endpointLoadCompletion callback: \n%s", endpoint!.login!.absoluteString)
-        DispatchQueue.main.async{
-            self.wv = WebViewController(with: endpoint?.login, and: self.userDismissedLogin)
-            self.present(self.wv!, animated: true, completion: nil)            
-        }
+        self.wv = WebViewController(with: endpoint?.login, and: self.userDismissedLogin)
+        self.present(self.wv!, animated: true, completion: nil)
     }
 
     /**
@@ -189,9 +184,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
      */
     func endpointFailure() {
         os_log(.debug, "load failed")
-        DispatchQueue.main.async {
-            self.dismissWebView()
-        }
+        self.dismissWebView()
         self.session.stopPoll = true
         //TODO: display error to user
     }
@@ -213,17 +206,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
      */
     func pollingCompletion(creds: AppLoginCreds?) -> Void {
         os_log(.debug, "polling succeeded")
-        DispatchQueue.main.async {
-            self.dismissWebView()
-        }
-        // save login credentials in keychain
-        do
-        {
-            try storeLoginCredentials(with: creds!)
-        } catch {
-            // show error to user
+        self.dismissWebView()
+        // save login credentials in keychain and core data
+        guard storeLoginCredentials(with: creds!) else {
+            // TODO show error to user
             os_log(.debug, "failed to save login credentials")
+            return
         }
+        //TODO: after saving credentials, go to the next scene and try to load some data
     }
     
     //MARK: Actions
@@ -245,7 +235,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, URLSessionDele
         guard let url = UrlBuilder(with: HTTPS, at: server, opt: path).getUrl() else { return } // production
         #endif
 
-        //TODO: get the login url for the user and the polling endpoint
+        // get the login url for the user and the polling endpoint
         //1. send post message to login v2
         self.session.startLoad(with: url, completionHandler: endpointLoadCompletion, pollingCompletion: pollingCompletion, onFailure: endpointFailure)
     }

@@ -8,18 +8,24 @@
 
 import Foundation
 import CoreData
+import os.log
 
-// sub-class to add convenience functions
+/**
+ Sub-class NSPersistentContainer to add convenience functions
+ */
 class PersistentContainer: NSPersistentContainer {
-
-
+    /**
+     Save the core data context only if there are changes
+     - Parameters:
+        - backgroundContext: the context to attempt to save
+     */
     func saveContext(with backgroundContext: NSManagedObjectContext? = nil) {
-        let context = backgroundContext ?? viewContext
+        let context = backgroundContext ?? self.viewContext
         guard context.hasChanges else { return }
         do {
             try context.save()
         } catch let error as NSError {
-            print("Error: \(error), \(error.userInfo)")
+            os_log(.debug, "Error saving to CoreData: %s", error.localizedDescription)
         }
     }
 }

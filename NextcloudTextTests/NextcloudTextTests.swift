@@ -66,6 +66,10 @@ class NextcloudTextTests: XCTestCase {
         XCTAssertTrue(dm.deleteAllCoreData(ofType: TESTDATA_CDT))
     }
     
+    /**
+     Keychain tests
+     - In order to run these tests, you must create a keychain sharing entitlement in the main app and set the development team for the test app
+     */
     func testKeychain() {
         let dm = NCTDataManager()
         let server = URL(string: "www.test.com")!
@@ -82,6 +86,7 @@ class NextcloudTextTests: XCTestCase {
         returnVal = dm.searchKeychain(for: creds) as! AppLoginCreds?
         XCTAssertNil(returnVal)
     }
+    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {

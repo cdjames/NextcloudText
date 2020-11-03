@@ -11,6 +11,7 @@ import CoreData
 import os.log
 
 class NCTDataManager {
+    //MARK: Helper functions
     private func getContext() -> NSManagedObjectContext {
         let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
         
@@ -21,6 +22,7 @@ class NCTDataManager {
         return myContainer.viewContext
     }
     
+    //MARK: CoreData functions
     /**
      Save to core data
      - Parameters:
@@ -125,6 +127,7 @@ class NCTDataManager {
         return true
     }
     
+    //MARK: Keychain functions
     func searchKeychain(for keys: Any) -> Any? {
         var query: [String: Any]
         // assemble the query

@@ -107,11 +107,15 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
         case self.initialSession:
             self.receivedData?.append(data)
             guard let endpoint = PollLogin(from: receivedData!) else {
-                self.failureCbk!()
+                DispatchQueue.main.async {
+                    self.failureCbk!()
+                }
                 return
             }
             // if you get the endpoint and token, send it back to caller in callback
-            self.successCbk!(endpoint)
+            DispatchQueue.main.async {
+                self.successCbk!(endpoint)
+            }
 
             // now start polling
             self.pollingRequest = assemblePollingRequest(with: endpoint)
@@ -125,11 +129,15 @@ class SessionHandler: URLSession, URLSessionDelegate, URLSessionDataDelegate, UR
             } */
             self.receivedData?.append(data)
             guard let creds = AppLoginCreds(from: self.receivedData!) else {
-                self.failureCbk!()
+                DispatchQueue.main.async {
+                    self.failureCbk!()
+                }
                 return
             }
                 // if you get the credentials, send it back to caller in callback
-            self.pollingCbk!(creds)
+            DispatchQueue.main.async {
+                self.pollingCbk!(creds)
+            }
         default:
             return
         }

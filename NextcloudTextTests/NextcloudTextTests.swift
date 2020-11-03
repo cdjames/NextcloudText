@@ -53,33 +53,33 @@ class NextcloudTextTests: XCTestCase {
     func testCoreData() {
         let dm = NCTDataManager()
         
-        XCTAssertTrue(dm.saveTestData(for: testString))
+        XCTAssertTrue(dm.saveCoreData(for: TESTDATA_CDT, with: testString))
 
-        var testData = dm.fetchData(ofType: "TestData")
+        var testData = dm.fetchCoreData(ofType: TESTDATA_CDT)
         XCTAssertNotNil(testData)
         let object = testData?.last
         XCTAssertNotNil(object)
         let string = object?.value(forKey: "testString") as! String
         XCTAssertTrue(string == testString)
-        testData = dm.fetchData(ofType: "TestData")
-        XCTAssertTrue(dm.saveTestData(for: testString))
-        XCTAssertTrue(dm.deleteAll(ofType: "TestData"))
+        testData = dm.fetchCoreData(ofType: TESTDATA_CDT)
+        XCTAssertTrue(dm.saveCoreData(for: TESTDATA_CDT, with: testString))
+        XCTAssertTrue(dm.deleteAllCoreData(ofType: TESTDATA_CDT))
     }
     
     func testKeychain() {
         let dm = NCTDataManager()
         let server = URL(string: "www.test.com")!
         let creds = AppLoginCreds(server: server, user: "test", password: "test")
-        XCTAssertTrue(dm.saveToKeychain(creds as Any))
-        var returnVal = dm.searchKeychain(for: creds as Any)
+        XCTAssertTrue(dm.saveToKeychain(creds))
+        var returnVal = dm.searchKeychain(for: creds)
         XCTAssertTrue(returnVal != nil)
         let returnCreds = returnVal as! AppLoginCreds
         XCTAssertTrue(returnCreds.appPassword == creds.appPassword)
         XCTAssertTrue(returnCreds.loginName == creds.loginName)
         XCTAssertTrue(returnCreds.server == creds.server)
-        XCTAssertTrue(dm.deleteFromKeychain(creds as Any))
+        XCTAssertTrue(dm.deleteFromKeychain(creds))
         
-        returnVal = dm.searchKeychain(for: creds as Any) as! AppLoginCreds?
+        returnVal = dm.searchKeychain(for: creds) as! AppLoginCreds?
         XCTAssertNil(returnVal)
     }
 //    func testPerformanceExample() {

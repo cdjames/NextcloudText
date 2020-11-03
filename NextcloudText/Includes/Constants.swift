@@ -20,3 +20,7 @@ let POLL_MS = 1000
 let POLL_SEC = 1
 //let POLL_INTERVAL = DispatchTime.now() + DispatchTimeInterval.milliseconds(POLL_MS)
 let POLL_INTERVAL = DispatchTime.now() + DispatchTimeInterval.seconds(POLL_SEC)
+let APPLOGINUSER_CDT = "AppLoginUser"
+let TESTDATA_CDT = "TestData"
+let ALL_CDT_TYPES = [APPLOGINUSER_CDT, TESTDATA_CDT]
+

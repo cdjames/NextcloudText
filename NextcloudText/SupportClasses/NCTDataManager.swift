@@ -21,7 +21,14 @@ class NCTDataManager {
         return myContainer.viewContext
     }
     
-    func saveCreds(for name: String, at server: String) -> Bool{
+    /**
+     Save to core data
+     - Parameters:
+        - dataType: the string representing the entity name
+        - data: the data for the data type
+     */
+    func saveCoreData(for entityType: String, with data: Any) -> Bool {
+        guard ALL_CDT_TYPES.contains(entityType) else { return false }
         
         let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
         
@@ -32,17 +39,28 @@ class NCTDataManager {
         let managedContext = myContainer.viewContext
         
         // get an entity in the context
-        let entity =
-            NSEntityDescription.entity(forEntityName: "AppLoginUser",
-                                       in: managedContext)!
+        guard let entity =
+            NSEntityDescription.entity(forEntityName: entityType,
+                                       in: managedContext) else { return false }
         
         // get a managed object from the entity
         let user = NSManagedObject(entity: entity,
                                    insertInto: managedContext)
         
         // set the values in the managed object
-        user.setValue(name, forKeyPath: "loginName")
-        user.setValue(server, forKeyPath: "server")
+        switch entityType {
+        case APPLOGINUSER_CDT:
+            guard data is NameServer else { return false }
+            let item = data as! NameServer
+            user.setValue(item.username, forKeyPath: "loginName")
+            user.setValue(item.server, forKeyPath: "server")
+        case TESTDATA_CDT:
+            guard data is String else { return false }
+            let string = data as! String
+            user.setValue(string, forKeyPath: "testString")
+        default:
+            return false
+        }
         
         // do the actual saving
         myContainer.saveContext(with: managedContext)
@@ -56,14 +74,14 @@ class NCTDataManager {
         - entity: the string representing the entity name
         - returnFaults: set to false to return all objects, not faults
      */
-    func fetchData(ofType entity: String, _ returnFaults: Bool = true) -> [NSManagedObject]? {
+    func fetchCoreData(ofType entityType: String, _ returnFaults: Bool = true) -> [NSManagedObject]? {
         
         // get a context
         let managedContext = self.getContext()
         
         // get a fetch request
         let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: entity)
+            NSFetchRequest<NSManagedObject>(entityName: entityType)
         fetchRequest.returnsObjectsAsFaults = returnFaults
         // do the actual fetching
         do {
@@ -76,7 +94,7 @@ class NCTDataManager {
         
     }
     
-    func deleteData(for object: NSManagedObject) -> Bool {
+    func deleteCoreData(for object: NSManagedObject) -> Bool {
         
         // get a context
         let managedContext = self.getContext()
@@ -95,43 +113,15 @@ class NCTDataManager {
         
     }
     
-    func deleteAll(ofType entity: String) -> Bool {
-        guard var objects = self.fetchData(ofType: entity) else { return false }
+    func deleteAllCoreData(ofType entityType: String) -> Bool {
+        guard var objects = self.fetchCoreData(ofType: entityType) else { return false }
         while objects.count > 0 {
             let object = objects.last!
-            guard self.deleteData(for: object) else {
+            guard self.deleteCoreData(for: object) else {
                 return false
             }
-            objects = self.fetchData(ofType: entity, false)!
+            objects = self.fetchCoreData(ofType: entityType, false)!
         }
-        return true
-    }
-
-    func saveTestData(for testString: String) -> Bool {
-        
-        let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate
-        
-        // get the container
-        let myContainer = sceneDelegate.persistentContainer
-        
-        // get a context
-        let managedContext = myContainer.viewContext
-        
-        // get an entity in the context
-        let entity =
-            NSEntityDescription.entity(forEntityName: "TestData",
-                                       in: managedContext)!
-        
-        // get a managed object from the entity
-        let user = NSManagedObject(entity: entity,
-                                   insertInto: managedContext)
-        
-        // set the values in the managed object
-        user.setValue(testString, forKeyPath: "testString")
-        
-        // do the actual saving
-        myContainer.saveContext(with: managedContext)
-        
         return true
     }
     

@@ -71,6 +71,15 @@ struct AppLoginCreds: Codable {
     }
 }
 
+struct NameServer {
+    var username: String
+    var server: String
+    
+    init(for name: String, at server: String) {
+        self.username = name
+        self.server = server
+    }
+}
 // poll with timer: https://stackoverflow.com/questions/44368019/proper-way-to-do-polling-in-swift
 //var timer: DispatchSourceTimer?
 //let queue = DispatchQueue.global(qos: .background)

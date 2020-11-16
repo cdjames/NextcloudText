@@ -17,7 +17,7 @@ extension String {
             return predicate.evaluate(with: self)
         }
     }
-    var isValidFolderChar: Bool {
+    var isValidFolderChar: Bool { 
         get {
             // is the character one of the following:
             // A–Z, a–z, 0–9, -, ., _, ~, !, $, &, ', (, ), *, +, ,, ;, =, :, @, /
